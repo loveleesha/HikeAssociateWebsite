@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+next-env.d.ts
+*.tsbuildinfo
+.env
+.env.local
+.vite-backup.tar.gz
+test-results
+playwright-report

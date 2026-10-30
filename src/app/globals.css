@@ -1,0 +1,231 @@
+@import 'tailwindcss';
+
+/* data-theme is set before first paint by the inline script in the root layout */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@theme static {
+  --breakpoint-*: initial;
+  --breakpoint-xs: 401px;
+  --breakpoint-sm: 561px;
+  --breakpoint-md: 721px;
+  --breakpoint-lg: 901px;
+  --breakpoint-xl: 1025px;
+  --breakpoint-nav: 1121px;
+  --breakpoint-2xl: 1181px;
+  --breakpoint-3xl: 1321px;
+
+  --font-sans: var(--font-plus-jakarta), system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --color-*: initial;
+  --color-white: #fff;
+  --color-navy-950: #031026;
+  --color-navy-900: #051731;
+  --color-navy-700: #0e2f5e;
+  --color-blue-600: #0b63e5;
+  --color-blue-500: #1470e8;
+  --color-cyan-400: #3cd4f7;
+  --color-cream: #f7e9d7;
+
+  /* Semantic colours: flipped for dark mode in the base layer below */
+  --color-ink: #0b1f3a;
+  --color-ink-soft: #55657d;
+  --color-line: #e4ebf5;
+  --color-tint: #f5f8fe;
+  --color-disc: #e8f1fe;
+  --color-canvas: #fff;
+  --color-surface: #fff;
+  --color-accent: #0a5cd6;
+  --color-field-line: #7c8ea8;
+  --color-dot: #7c8ea8;
+  --color-error: #b3261e;
+  --color-error-line: #c9302c;
+  --color-success: #0d7a43;
+
+  --radius-tile: 14px;
+  --radius-card: 16px;
+  --radius-panel: 22px;
+
+  /* Tailwind inlines shadow values, so these point at variables the dark theme can change */
+  --shadow-card: var(--elevation-card);
+  --shadow-lift: var(--elevation-lift);
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --spacing-header: 76px;
+  --spacing-gutter: clamp(16px, 4vw, 32px);
+  --spacing-section: clamp(52px, 7vw, 84px);
+  --container-page: 1240px;
+
+  --animate-page-in: page-in 0.5s var(--ease-expo) both;
+  --animate-drift: drift 18s ease-in-out infinite alternate;
+  --animate-drift-slow: drift 24s ease-in-out infinite alternate-reverse;
+  --animate-draw: draw 3.2s 0.5s var(--ease-expo) forwards;
+  --animate-ken-burns: ken-burns 22s ease-out forwards;
+  --animate-nudge: nudge 2.2s ease-in-out infinite;
+  --animate-ring: ring 4s ease-out infinite;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes drift {
+  to {
+    transform: translate3d(9vmax, 6vmax, 0) scale(1.14);
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1.01);
+  }
+}
+
+@keyframes word-up {
+  from {
+    transform: translate3d(0, 112%, 0);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translate3d(36px, 10px, 0);
+  }
+}
+
+@keyframes bob {
+  to {
+    transform: translate3d(0, -9px, 0);
+  }
+}
+
+@keyframes ring {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  28%,
+  100% {
+    opacity: 0;
+    transform: scale(1.34);
+  }
+}
+
+@keyframes nudge {
+  50% {
+    transform: translate3d(5px, 0, 0);
+  }
+}
+
+@layer base {
+  :root {
+    --elevation-card: 0 2px 6px rgb(11 31 58 / 5%), 0 10px 26px rgb(11 31 58 / 6%);
+    --elevation-lift: 0 8px 20px rgb(11 99 229 / 10%), 0 26px 56px rgb(11 31 58 / 14%);
+    word-spacing: 0.07em;
+    -webkit-font-smoothing: antialiased;
+    text-size-adjust: 100%;
+    color-scheme: light;
+  }
+
+  :root[data-theme='dark'] {
+    --color-ink: #e9eff8;
+    --color-ink-soft: #aebbcf;
+    --color-line: #223a5e;
+    --color-tint: #0b1c37;
+    --color-disc: #183560;
+    --color-canvas: #08172e;
+    --color-surface: #102441;
+    --color-accent: #79c6ff;
+    --color-field-line: #6d8bb8;
+    --color-dot: #6d8bb8;
+    --color-error: #ff9d95;
+    --color-error-line: #ff8078;
+    --color-success: #5fd99a;
+    --elevation-card: 0 2px 6px rgb(0 0 0 / 22%), 0 10px 26px rgb(0 0 0 / 24%);
+    --elevation-lift: 0 8px 20px rgb(0 0 0 / 28%), 0 26px 56px rgb(0 0 0 / 40%);
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-padding-top: calc(var(--spacing-header) + 16px);
+    background: var(--color-navy-950);
+  }
+
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-size: 1rem;
+    line-height: 1.65;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 800;
+    line-height: 1.16;
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    border-radius: 6px;
+    /* Dark sections set --focus-ring to cyan: no single colour is visible on both light and dark */
+    outline: 2px solid var(--focus-ring, var(--color-accent));
+    outline-offset: 3px;
+  }
+}
+
+/* Unlayered so it outranks the utilities: visitors who opt out of motion still get all the content. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* Content that hasn't scrolled into view yet must still appear for these visitors and on paper. */
+@media (prefers-reduced-motion: reduce), print {
+  [data-reveal],
+  [data-reveal-item] {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: none !important;
+  }
+}
