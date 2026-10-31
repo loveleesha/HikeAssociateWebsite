@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: '%s | Hike Associate',
   },
   description:
-    'Hike Associate specializes in debt and asset recovery, bank recovery solutions, settlement support, customer support and real estate telesales for financial institutions, businesses and individuals.',
+    'Hike Associate specializes in debt and asset recovery, bank recovery solutions, settlement support and customer support for financial institutions, businesses and individuals.',
   icons: { icon: { url: '/favicon.svg', type: 'image/svg+xml' } },
   openGraph: {
     title: 'Hike Associate | Building Trust. Recovering Value.',

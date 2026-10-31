@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { ArrowRight, Menu, Phone, X } from 'lucide-react'
+import { Menu, Phone, X } from 'lucide-react'
 import ButtonLink from '@/components/atoms/ButtonLink'
 import Container from '@/components/atoms/Container'
+import LoginButton from '@/components/molecules/LoginButton'
 import LogoLink from '@/components/molecules/LogoLink'
 import NavLink from '@/components/molecules/NavLink'
 import ThemeToggle from '@/components/molecules/ThemeToggle'
@@ -40,7 +41,7 @@ export default function Header() {
     background.forEach((el) => {
       el.inert = true
     })
-    const desktop = window.matchMedia('(min-width: 1121px)')
+    const desktop = window.matchMedia('(min-width: 1241px)')
     const onLayoutChange = (e: MediaQueryListEvent) => {
       if (e.matches) setOpen(false)
     }
@@ -71,7 +72,7 @@ export default function Header() {
       <Container className="flex h-header items-center justify-between gap-5">
         <LogoLink />
 
-        <nav className="hidden gap-[clamp(14px,1.4vw,30px)] nav:flex" aria-label="Main">
+        <nav className="hidden gap-6 nav:flex" aria-label="Main">
           {navLinks.map(({ href, label }) => (
             <NavLink key={href} href={href} className={DESKTOP_LINK}>
               {label}
@@ -82,22 +83,11 @@ export default function Header() {
         <div className="flex items-center gap-2.5">
           <ThemeToggle />
 
-          {loginLinks.map(({ href, label }) => (
-            <ButtonLink
-              key={href}
-              href={href}
-              rel="nofollow"
-              variant="outline"
-              size="sm"
-              className="hidden nav:inline-flex"
-            >
-              {label}
-            </ButtonLink>
-          ))}
+          <span className="mx-1 hidden h-8 w-px bg-white/18 nav:block" aria-hidden="true" />
 
-          <ButtonLink href="/contact" size="sm" className="hidden 3xl:inline-flex">
-            Get in Touch <ArrowRight size={16} aria-hidden="true" />
-          </ButtonLink>
+          {loginLinks.map((link) => (
+            <LoginButton key={link.href} {...link} className="hidden nav:inline-flex" />
+          ))}
 
           <button
             ref={toggleRef}
@@ -128,11 +118,9 @@ export default function Header() {
         <ButtonLink href={company.phoneHref}>
           <Phone size={16} aria-hidden="true" /> {company.phoneDisplay}
         </ButtonLink>
-        <div className="-mt-3 grid gap-3 xs:grid-cols-2">
-          {loginLinks.map(({ href, label }) => (
-            <ButtonLink key={href} href={href} rel="nofollow" variant="outline">
-              {label}
-            </ButtonLink>
+        <div className="-mt-3 grid gap-3 md:grid-cols-2">
+          {loginLinks.map((link) => (
+            <LoginButton key={link.href} {...link} />
           ))}
         </div>
       </div>

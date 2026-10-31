@@ -23,7 +23,7 @@ export default function TestimonialCard({ quote, author, isClone }: TestimonialC
         <Monogram text={author.charAt(0)} />
         <span>
           <strong className="block text-[0.9rem] leading-[1.3]">{author}</strong>
-          <small className="text-[0.76rem] text-ink-soft">Banking Partner</small>
+          <small className="text-[0.76rem] text-ink-soft">Financial Partner</small>
         </span>
       </figcaption>
     </figure>

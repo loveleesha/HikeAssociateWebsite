@@ -9,7 +9,7 @@ export default function CompanyValues() {
     <Section tone="tint">
       <Container>
         <SectionHeading eyebrow="Why Choose Us" title="What Sets Us Apart" />
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-6 xl:[&>*]:col-span-2 md:max-xl:[&>*:last-child]:col-span-2 xl:[&>*:nth-child(4)]:col-start-2">
           {whyChoose.map(({ icon, title, text }, i) => (
             <ValueCard key={title} icon={icon} title={title} text={text} delay={(i % 3) * 90} />
           ))}

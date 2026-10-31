@@ -13,7 +13,7 @@ export const metadata = pageMetadata({
   title: 'Hike Associate | Debt Recovery & Customer Support Solutions',
   absoluteTitle: true,
   description:
-    'Hike Associate provides ethical debt and asset recovery, settlement support, 24/7 customer support and real estate telesales for businesses and individuals.',
+    'Hike Associate provides ethical debt and asset recovery, settlement support and 24/7 customer support for businesses and individuals.',
   path: '/',
 })
 

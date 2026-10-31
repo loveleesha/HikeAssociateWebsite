@@ -57,6 +57,14 @@ test('robots.txt and the sitemap list every page', async ({ request }) => {
   }
 })
 
+test('site has no telesales or real estate content', async ({ page }) => {
+  for (const route of ROUTES) {
+    await page.goto(route)
+    const html = await page.content()
+    expect(html, route).not.toMatch(/telesales|real estate/i)
+  }
+})
+
 test('social image and app icon are real images', async ({ request }) => {
   for (const path of ['/opengraph-image', '/apple-icon']) {
     const response = await request.get(path)
@@ -66,15 +74,16 @@ test('social image and app icon are real images', async ({ request }) => {
 })
 
 for (const route of ['/', '/for-businesses']) {
-  test(`${route} names TATA Capital as crawlable text`, async ({ page }) => {
+  test(`${route} names Tata Capital as crawlable text`, async ({ page }) => {
     await page.goto(route)
     await expect(page.locator('#customers h2')).toHaveCount(1)
-    await expect(page.locator('#customers li').filter({ hasText: 'TATA Capital' })).toHaveCount(1)
+    await expect(page.locator('#customers li').filter({ hasText: 'Tata Capital' })).toHaveCount(1)
   })
 }
 
 for (const { width, scope } of [
-  { width: 1121, scope: 'header > div' },
+  { width: 1241, scope: 'header > div' },
+  { width: 1280, scope: 'header > div' },
   { width: 1440, scope: 'header > div' },
   { width: 390, scope: '#mobile-nav' },
 ]) {
@@ -84,13 +93,15 @@ for (const { width, scope } of [
     if (width === 390) await page.getByRole('button', { name: 'Open menu' }).click()
 
     const admin = page.locator(scope).getByRole('link', { name: 'Admin Login' })
-    const user = page.locator(scope).getByRole('link', { name: 'User Login' })
+    const employee = page.locator(scope).getByRole('link', { name: 'Employee Login' })
     await expect(admin).toBeVisible()
-    await expect(user).toBeVisible()
+    await expect(employee).toBeVisible()
     await expect(admin).toHaveAttribute('href', 'https://hrms.hikeassociate.com/admin/login')
-    await expect(user).toHaveAttribute('href', 'https://hrms.hikeassociate.com/login')
-    await expect(admin).toHaveAttribute('rel', 'nofollow')
-    await expect(user).toHaveAttribute('rel', 'nofollow')
+    await expect(employee).toHaveAttribute('href', 'https://hrms.hikeassociate.com/login')
+    for (const link of [admin, employee]) {
+      await expect(link).toHaveAttribute('rel', 'nofollow noopener')
+      await expect(link).toHaveAttribute('target', '_blank')
+    }
 
     const overflow = await page.evaluate(() => {
       const bar = document.querySelector('header > div')!
@@ -100,3 +111,18 @@ for (const { width, scope } of [
     expect(overflow).toBeLessThanOrEqual(1)
   })
 }
+
+test('login buttons open the portal in a new tab', async ({ page, context }) => {
+  await page.setViewportSize({ width: 1440, height: 800 })
+  await page.route('https://hrms.hikeassociate.com/**', (route) => route.fulfill({ body: 'portal' }))
+  await context.route('https://hrms.hikeassociate.com/**', (route) => route.fulfill({ body: 'portal' }))
+  await page.goto('/', { waitUntil: 'networkidle' })
+
+  const [portal] = await Promise.all([
+    context.waitForEvent('page'),
+    page.getByRole('link', { name: 'Admin Login' }).click(),
+  ])
+
+  expect(portal.url()).toBe('https://hrms.hikeassociate.com/admin/login')
+  expect(page.url()).not.toContain('hrms')
+})

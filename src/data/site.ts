@@ -52,6 +52,13 @@ export interface Testimonial {
   author: string
 }
 
+export interface LoginLink {
+  href: string
+  label: string
+  icon: LucideIcon
+  tone: 'admin' | 'employee'
+}
+
 export const company = {
   name: 'Hike Associate',
   legalName: 'Hike Associate Pvt. Ltd.',
@@ -73,9 +80,9 @@ export const navLinks = [
 ]
 
 // The staff portal, hosted separately from this site.
-export const loginLinks = [
-  { href: 'https://hrms.hikeassociate.com/admin/login', label: 'Admin Login' },
-  { href: 'https://hrms.hikeassociate.com/login', label: 'User Login' },
+export const loginLinks: LoginLink[] = [
+  { href: 'https://hrms.hikeassociate.com/admin/login', label: 'Admin Login', icon: ShieldCheck, tone: 'admin' },
+  { href: 'https://hrms.hikeassociate.com/login', label: 'Employee Login', icon: UserRound, tone: 'employee' },
 ]
 
 export const hero = {
@@ -95,9 +102,10 @@ export const hero = {
   ],
 }
 
-// The live site's own counters are published as 0, so these use only figures its text supports.
+// The live site's own counters are published as 0, so these use only figures its text supports, plus the years of
+// experience supplied by the company.
 export const stats = [
-  { icon: Landmark, value: 3, suffix: '+', label: 'Years of Experience' },
+  { icon: Landmark, value: 4, suffix: '+', label: 'Years of Experience' },
   { icon: Clock, value: 24, suffix: '/7', label: 'Customer Support' },
   { icon: Users, value: 3, suffix: '', label: 'Founding Partners' },
   { icon: LayoutGrid, value: 6, suffix: '', label: 'Core Service Lines' },
@@ -130,9 +138,9 @@ export const homeServices = [
   },
   {
     icon: Building2,
-    title: 'Real Estate Telesales',
-    text: 'Cold calling, lead generation and follow-ups that connect you with potential buyers.',
-    href: '/for-businesses#telesales',
+    title: 'Business Process Outsourcing',
+    text: 'Customer service outsourcing to reduce operational costs.',
+    href: '/services#bpo',
   },
   {
     icon: Settings2,
@@ -299,7 +307,6 @@ export const audiences = {
       'Bank Recovery & Debt Collection',
       'Voice & Non-Voice Customer Support',
       'Business Process Outsourcing',
-      'Real Estate Telesales',
       'Financial Consultancy & Risk Management',
     ],
     cta: 'Partner With Us',
@@ -368,7 +375,7 @@ export const whyChoose = [
     icon: Users,
     title: 'Highly Skilled Team',
     short: 'Well-trained professionals backed by continuous skill development.',
-    text: 'Our team comprises well-trained professionals with expertise across various domains, including debt recovery, customer support, and telesales. We invest in continuous training and skill enhancement to ensure that our staff stays ahead of industry trends and delivers exceptional results.',
+    text: 'Our team comprises well-trained professionals with expertise across various domains, including debt recovery, settlement support, and customer support. We invest in continuous training and skill enhancement to ensure that our staff stays ahead of industry trends and delivers exceptional results.',
   },
   {
     icon: Headphones,
@@ -376,22 +383,16 @@ export const whyChoose = [
     short: 'Round-the-clock support through voice and non-voice channels.',
     text: 'We offer round-the-clock customer support through both voice and non-voice channels, ensuring that your customers receive prompt and reliable assistance. Our dedicated support executives are trained to handle queries, resolve issues, and provide a seamless experience, fostering trust and loyalty.',
   },
-  {
-    icon: Building2,
-    title: 'Real Estate Telesales Excellence',
-    short: 'Skilled executives who connect with buyers and close deals.',
-    text: 'Our skilled telesales executives excel in connecting with potential real estate buyers and closing deals efficiently. From cold calling to lead generation and follow-ups, our team ensures a professional approach that boosts sales and customer satisfaction in the real estate sector.',
-  },
 ]
 
 export const testimonials: Testimonial[] = [
-  { quote: 'Customers appreciate our fast and efficient recovery process.', author: 'Bajaj Bank' },
-  { quote: 'Many clients praise our tailored solutions that cater to their specific needs.', author: 'DBS Bank' },
-  { quote: 'Clients value our honest and clear communication throughout the process.', author: 'NIRA Bank' },
+  { quote: 'Customers appreciate our fast and efficient recovery process.', author: 'Bajaj Finance' },
+  { quote: 'Many clients praise our tailored solutions that cater to their specific needs.', author: 'DBS Bank India' },
+  { quote: 'Clients value our honest and clear communication throughout the process.', author: 'NIRA Finance' },
 ]
 
-// TATA Capital was supplied by the company; the others are the clients named in the testimonials above.
-export const customers = ['TATA Capital', ...testimonials.map(({ author }) => author)]
+// Tata Capital was supplied by the company; the others are the clients named in the testimonials above.
+export const customers = ['Tata Capital', ...testimonials.map(({ author }) => author)]
 
 export const contactSection = {
   text: 'Have questions or need assistance? We’re here to help! Whether you’re looking for bank recovery solutions or customer service expertise, our team is ready to assist you.',
@@ -402,7 +403,6 @@ export const contactSection = {
     'Loan Settlement & Negotiation',
     'Customer Support Services',
     'Business Process Outsourcing',
-    'Real Estate Telesales',
     'Financial Consultancy & Risk Management',
     'Other',
   ],
@@ -411,7 +411,7 @@ export const contactSection = {
 export const about = {
   intro: [
     'At Hike Associate, we specialize in bank recovery solutions and customer support services. Our mission is to assist financial institutions in recovering outstanding dues efficiently while ensuring ethical and customer-friendly interactions.',
-    'With a team of highly skilled professionals, we also excel in real estate telesales, helping businesses connect with potential buyers and close deals effectively. Our voice and non-voice customer support executives ensure seamless communication, handling inquiries and resolving concerns with professionalism and care.',
+    'Our team of highly skilled professionals includes voice and non-voice customer support executives who ensure seamless communication, handling inquiries and resolving concerns with professionalism and care.',
   ],
   storyTitle: 'The Story of Three Partners: A Vision to Restore Financial Stability',
   storyIntro:
