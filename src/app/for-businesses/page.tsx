@@ -4,6 +4,7 @@ import CheckList from '@/components/molecules/CheckList'
 import SectionHeading from '@/components/molecules/SectionHeading'
 import SplitBlock from '@/components/molecules/SplitBlock'
 import ContactSection from '@/components/organisms/ContactSection'
+import Customers from '@/components/organisms/Customers'
 import PageHero from '@/components/organisms/PageHero'
 import Process from '@/components/organisms/Process'
 import SpecialistServices from '@/components/organisms/SpecialistServices'
@@ -13,7 +14,7 @@ import { pageMetadata } from '@/lib/seo'
 export const metadata = pageMetadata({
   title: 'For Businesses',
   description:
-    "Recover debts, enhance customer experience and optimize financial operations with Hike Associate's services for financial institutions and businesses.",
+    'Debt recovery, customer support and outsourcing from Hike Associate, trusted by financial institutions and businesses, with customers including TATA Capital.',
   path: '/for-businesses',
 })
 
@@ -54,6 +55,7 @@ export default function BusinessesPage() {
         </Section>
       )}
 
+      <Customers tone="tint" />
       <Process />
       <ContactSection />
     </>

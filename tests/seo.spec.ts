@@ -64,3 +64,39 @@ test('social image and app icon are real images', async ({ request }) => {
     expect(response.headers()['content-type'], path).toBe('image/png')
   }
 })
+
+for (const route of ['/', '/for-businesses']) {
+  test(`${route} names TATA Capital as crawlable text`, async ({ page }) => {
+    await page.goto(route)
+    await expect(page.locator('#customers h2')).toHaveCount(1)
+    await expect(page.locator('#customers li').filter({ hasText: 'TATA Capital' })).toHaveCount(1)
+  })
+}
+
+for (const { width, scope } of [
+  { width: 1121, scope: 'header > div' },
+  { width: 1440, scope: 'header > div' },
+  { width: 390, scope: '#mobile-nav' },
+]) {
+  test(`login buttons at ${width}px go to the portal and pass no link equity`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 800 })
+    await page.goto('/')
+    if (width === 390) await page.getByRole('button', { name: 'Open menu' }).click()
+
+    const admin = page.locator(scope).getByRole('link', { name: 'Admin Login' })
+    const user = page.locator(scope).getByRole('link', { name: 'User Login' })
+    await expect(admin).toBeVisible()
+    await expect(user).toBeVisible()
+    await expect(admin).toHaveAttribute('href', 'https://hrms.hikeassociate.com/admin/login')
+    await expect(user).toHaveAttribute('href', 'https://hrms.hikeassociate.com/login')
+    await expect(admin).toHaveAttribute('rel', 'nofollow')
+    await expect(user).toHaveAttribute('rel', 'nofollow')
+
+    const overflow = await page.evaluate(() => {
+      const bar = document.querySelector('header > div')!
+      const end = bar.getBoundingClientRect().right - parseFloat(getComputedStyle(bar).paddingRight)
+      return Math.max(...[...bar.children].map((el) => el.getBoundingClientRect().right)) - end
+    })
+    expect(overflow).toBeLessThanOrEqual(1)
+  })
+}

@@ -1,5 +1,6 @@
 import Audiences from '@/components/organisms/Audiences'
 import ContactSection from '@/components/organisms/ContactSection'
+import Customers from '@/components/organisms/Customers'
 import Hero from '@/components/organisms/Hero'
 import Process from '@/components/organisms/Process'
 import ServicesOverview from '@/components/organisms/ServicesOverview'
@@ -21,6 +22,7 @@ export default function HomePage() {
     <>
       <Hero />
       <StatsStrip />
+      <Customers />
       <ServicesOverview />
       <Audiences />
       <Process />

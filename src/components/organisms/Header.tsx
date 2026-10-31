@@ -8,7 +8,7 @@ import Container from '@/components/atoms/Container'
 import LogoLink from '@/components/molecules/LogoLink'
 import NavLink from '@/components/molecules/NavLink'
 import ThemeToggle from '@/components/molecules/ThemeToggle'
-import { company, navLinks } from '@/data/site'
+import { company, loginLinks, navLinks } from '@/data/site'
 import { subscribeScroll } from '@/lib/scroll'
 
 const DESKTOP_LINK =
@@ -71,7 +71,7 @@ export default function Header() {
       <Container className="flex h-header items-center justify-between gap-5">
         <LogoLink />
 
-        <nav className="hidden gap-[clamp(14px,2vw,30px)] nav:flex" aria-label="Main">
+        <nav className="hidden gap-[clamp(14px,1.4vw,30px)] nav:flex" aria-label="Main">
           {navLinks.map(({ href, label }) => (
             <NavLink key={href} href={href} className={DESKTOP_LINK}>
               {label}
@@ -82,7 +82,20 @@ export default function Header() {
         <div className="flex items-center gap-2.5">
           <ThemeToggle />
 
-          <ButtonLink href="/contact" size="sm" className="hidden nav:inline-flex">
+          {loginLinks.map(({ href, label }) => (
+            <ButtonLink
+              key={href}
+              href={href}
+              rel="nofollow"
+              variant="outline"
+              size="sm"
+              className="hidden nav:inline-flex"
+            >
+              {label}
+            </ButtonLink>
+          ))}
+
+          <ButtonLink href="/contact" size="sm" className="hidden 3xl:inline-flex">
             Get in Touch <ArrowRight size={16} aria-hidden="true" />
           </ButtonLink>
 
@@ -115,6 +128,13 @@ export default function Header() {
         <ButtonLink href={company.phoneHref}>
           <Phone size={16} aria-hidden="true" /> {company.phoneDisplay}
         </ButtonLink>
+        <div className="-mt-3 grid gap-3 xs:grid-cols-2">
+          {loginLinks.map(({ href, label }) => (
+            <ButtonLink key={href} href={href} rel="nofollow" variant="outline">
+              {label}
+            </ButtonLink>
+          ))}
+        </div>
       </div>
     </header>
   )

@@ -72,6 +72,12 @@ export const navLinks = [
   { href: '/contact', label: 'Contact' },
 ]
 
+// The staff portal, hosted separately from this site.
+export const loginLinks = [
+  { href: 'https://hrms.hikeassociate.com/admin/login', label: 'Admin Login' },
+  { href: 'https://hrms.hikeassociate.com/login', label: 'User Login' },
+]
+
 export const hero = {
   // Eyebrow and headline are from the approved design; supporting copy is from the site.
   eyebrow: ['Debt Recovery', 'Customer Support', 'Financial Stability'],
@@ -383,6 +389,9 @@ export const testimonials: Testimonial[] = [
   { quote: 'Many clients praise our tailored solutions that cater to their specific needs.', author: 'DBS Bank' },
   { quote: 'Clients value our honest and clear communication throughout the process.', author: 'NIRA Bank' },
 ]
+
+// TATA Capital was supplied by the company; the others are the clients named in the testimonials above.
+export const customers = ['TATA Capital', ...testimonials.map(({ author }) => author)]
 
 export const contactSection = {
   text: 'Have questions or need assistance? We’re here to help! Whether you’re looking for bank recovery solutions or customer service expertise, our team is ready to assist you.',
