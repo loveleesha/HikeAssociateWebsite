@@ -7,6 +7,7 @@ import ServicesOverview from '@/components/organisms/ServicesOverview'
 import StatsStrip from '@/components/organisms/StatsStrip'
 import Testimonials from '@/components/organisms/Testimonials'
 import WhyChoose from '@/components/organisms/WhyChoose'
+import WorkingLocations from '@/components/organisms/WorkingLocations'
 import { pageMetadata } from '@/lib/seo'
 
 export const metadata = pageMetadata({
@@ -27,6 +28,7 @@ export default function HomePage() {
       <Audiences />
       <Process />
       <WhyChoose />
+      <WorkingLocations />
       <Testimonials />
       <ContactSection />
     </>

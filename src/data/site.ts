@@ -62,9 +62,9 @@ export interface LoginLink {
 export const company = {
   name: 'Hike Associate',
   legalName: 'Hike Associate Pvt. Ltd.',
-  phoneDisplay: '+91 78358 25502',
-  phoneHref: 'tel:+917835825502',
-  email: 'backend@hikeassociate.com',
+  phoneDisplay: '+91 70275 36636',
+  phoneHref: 'tel:+917027536636',
+  email: 'support@hikeassociate.com',
   address: 'Dwarka, Near by Metro Station',
   postalAddress: { street: 'Near by Metro Station', locality: 'Dwarka', region: 'New Delhi', country: 'IN' },
   tagline: 'We specialize in bank recovery solutions and customer support services.',
@@ -386,13 +386,34 @@ export const whyChoose = [
 ]
 
 export const testimonials: Testimonial[] = [
-  { quote: 'Customers appreciate our fast and efficient recovery process.', author: 'Bajaj Finance' },
-  { quote: 'Many clients praise our tailored solutions that cater to their specific needs.', author: 'DBS Bank India' },
-  { quote: 'Clients value our honest and clear communication throughout the process.', author: 'NIRA Finance' },
+  { quote: 'Customers appreciate our fast and efficient recovery process.', author: 'Bajaj Finserv' },
+  { quote: 'Many clients praise our tailored solutions that cater to their specific needs.', author: 'DBS Bank' },
+  { quote: 'Clients value our honest and clear communication throughout the process.', author: 'Nira Finance' },
 ]
 
-// Tata Capital was supplied by the company; the others are the clients named in the testimonials above.
-export const customers = ['Tata Capital', ...testimonials.map(({ author }) => author)]
+export const customers = [
+  'AU Bank',
+  'DBS Bank',
+  'Unity Bank',
+  'Nira Finance',
+  'Werize',
+  'Clix Capital',
+  'Tata Capital',
+  'Bajaj Finserv',
+  'Satin Finserv',
+  'Khatabook',
+  'Meesho Finance',
+  'One Card',
+]
+
+export const workingLocations = [
+  { city: 'New Delhi', state: 'Delhi' },
+  { city: 'Kanpur', state: 'Uttar Pradesh' },
+  { city: 'Ahmedabad', state: 'Gujarat' },
+  { city: 'Jaipur', state: 'Rajasthan' },
+  { city: 'Pune', state: 'Maharashtra' },
+  { city: 'Mumbai', state: 'Maharashtra' },
+]
 
 export const contactSection = {
   text: 'Have questions or need assistance? We’re here to help! Whether you’re looking for bank recovery solutions or customer service expertise, our team is ready to assist you.',

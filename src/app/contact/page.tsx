@@ -1,12 +1,13 @@
 import ContactCards from '@/components/organisms/ContactCards'
 import ContactSection from '@/components/organisms/ContactSection'
 import PageHero from '@/components/organisms/PageHero'
+import WorkingLocations from '@/components/organisms/WorkingLocations'
 import { pageMetadata } from '@/lib/seo'
 
 export const metadata = pageMetadata({
   title: 'Contact',
   description:
-    'Contact Hike Associate in Dwarka for bank recovery, loan settlement and customer support. Call +91 78358 25502 or send us your enquiry online.',
+    'Contact Hike Associate in Dwarka for bank recovery, loan settlement and customer support. Call +91 70275 36636 or send us your enquiry online.',
   path: '/contact',
 })
 
@@ -20,6 +21,7 @@ export default function ContactPage() {
         text="Fill out the form and our experts will get back to you as soon as possible. Let’s connect and find the right solution for your needs."
       />
       <ContactCards />
+      <WorkingLocations />
       <ContactSection />
     </>
   )
